@@ -143,7 +143,7 @@ bx1.text(940,1.52,'Eclogite' '\n' 'formation',color='yellowgreen',rotation='-15'
 bx1.set_title(str(float('%g' % (PCO2/1e5))) + ' bar CO$_{2}$ degassed by ' + str(float('%g' % (4.5 - t))) + ' Ga',weight='bold',fontsize=50)
     
 #%%
-GEL = 4000. #m, initial water inventory at start of habitable era
+GEL = 3000. #m, initial water inventory at start of habitable era
 rho_w = 1000. #kg m^{-3}, density of water
 m_w = GEL*rho_w #kg, mass of total water column
 ven_hab_t = 0.1 #Gyr, start time of habitable era on Venus in Gyr after Venus formation (4.5 - t gives time in Ga)
@@ -163,22 +163,25 @@ colors_hyd = cmap(np.linspace(0, 1, len(hyd_arr)))
 #%%
 fig3, ax3 = plt.subplots(2,1,figsize=(25,30))
 fig3.tight_layout(pad=20.0)
-ax3[0].set_ylim((100/1000,10*GEL/1000))
+ax3[0].set_ylim((10,5*GEL))
 ax3[0].set_yscale("log")
-ax3[0].axhline(y=300/1000,linestyle='--',color='k',linewidth = 7)
+ax3[0].axhline(y=500,linestyle='--',color='k',linewidth = 7)
+ax3[0].axhline(y=1000,linestyle=':',color='k',linewidth = 7)
 # ax3[0].axhline(y=500/1000,linestyle='--',color='dodgerblue',linewidth = 7)
 ax3[0].set_xlabel('melt H$\mathregular{_{2}}$O concentration (wt%)',weight='bold',fontsize=40)
-ax3[0].set_ylabel('GEL water (km)',weight='bold',fontsize=40)
+ax3[0].set_ylabel('GEL water (m)',weight='bold',fontsize=40)
 
-ax3[1].set_ylim((100/1000,5*GEL/1000))
+ax3[1].set_ylim((100,5*GEL))
 ax3[1].set_yscale("log")
-ax3[1].axhline(y=300/1000,linestyle='--',color='k',linewidth = 7)
+ax3[1].axhline(y=500,linestyle='--',color='k',linewidth = 7)
+ax3[1].axhline(y=1000,linestyle=':',color='k',linewidth = 7)
 # ax3[1].axhline(y=500/1000,linestyle='--',color='dodgerblue',linewidth = 7)
 ax3[1].set_xlabel('melt H$\mathregular{_{2}}$O concentration (wt%)',weight='bold',fontsize=40)
-ax3[1].set_ylabel('GEL water (km)',weight='bold',fontsize=40)
+ax3[1].set_ylabel('GEL water (m)',weight='bold',fontsize=40)
 
 # ax3[0].text(0,0.54,'500 m', fontsize=40,weight='bold',color='dodgerblue')
-ax3[0].text(0,0.32,'300 m', fontsize=40,weight='bold')
+ax3[0].text(0,520,'500 m', fontsize=40,weight='bold')
+ax3[0].text(0,1100,'1000 m', fontsize=40,weight='bold')
 
 # ax3[0].annotate('', xy=(0.17,0.2),  xycoords='data',
 # xytext=(0.17, 0.5), textcoords='data',
@@ -186,14 +189,15 @@ ax3[0].text(0,0.32,'300 m', fontsize=40,weight='bold')
 # horizontalalignment='left', verticalalignment='bottom',
 # )
 
-ax3[0].annotate('', xy=(0.1,0.15),  xycoords='data',
-xytext=(0.1, 0.3), textcoords='data',
+ax3[0].annotate('', xy=(0.1,300),  xycoords='data',
+xytext=(0.1, 500), textcoords='data',
 arrowprops=dict(color='k', shrink=0,width=10,headwidth=20,headlength=40),
 horizontalalignment='left', verticalalignment='bottom',
 )
 
 # ax3[1].text(0.9,0.54,'500 m', fontsize=40,weight='bold',color='dodgerblue')
-ax3[1].text(0.9,0.32,'300 m', fontsize=40,weight='bold')
+ax3[1].text(0,520,'500 m', fontsize=40,weight='bold')
+ax3[1].text(0,1100,'1000 m', fontsize=40,weight='bold')
 
 # ax3[1].annotate('', xy=(1.02,0.2),  xycoords='data',
 # xytext=(1.02, 0.5), textcoords='data',
@@ -201,8 +205,8 @@ ax3[1].text(0.9,0.32,'300 m', fontsize=40,weight='bold')
 # horizontalalignment='left', verticalalignment='bottom',
 # )
 
-ax3[1].annotate('', xy=(0.9,0.15),  xycoords='data',
-xytext=(0.9, 0.3), textcoords='data',
+ax3[1].annotate('', xy=(0.9,300),  xycoords='data',
+xytext=(0.9, 500), textcoords='data',
 arrowprops=dict(color='k', shrink=0,width=10,headwidth=20,headlength=40),
 horizontalalignment='left', verticalalignment='bottom',
 )
@@ -215,15 +219,17 @@ for i4 in range(0,np.size(hyd_arr)):
     
     #%%
     fig2, ax2 = plt.subplots()
-    ax2.set_ylim((1e-1,GEL/1000))
+    ax2.set_ylim((100,GEL))
     ax2.set_yscale("log")
-    ax2.axhline(y=300/1000,linestyle='--',color='k')
+    ax2.axhline(y=500,linestyle='--',color='k')
+    ax2.axhline(y=1000,linestyle=':',color='k')
     # ax2.axhline(y=500/1000,linestyle='--',color='dodgerblue')
     ax2.set_xlabel('Time (Gyr)',weight='bold')
-    ax2.set_ylabel('GEL water (km)',weight='bold')
+    ax2.set_ylabel('GEL water (m)',weight='bold')
     
     # ax2.text(4.5-0.1,0.54,'500 m', weight='bold',color='dodgerblue')
-    ax2.text(4.5-0.15,0.32,'300 m',weight='bold')
+    ax2.text(4.5-0.15,520,'500 m',weight='bold')
+    ax2.text(4.5-0.15,1010,'1000 m',weight='bold')
     
     # ax2.annotate('', xy=(4.5-0.101,0.2),  xycoords='data',
     # xytext=(4.5-0.101, 0.5), textcoords='data',
@@ -231,8 +237,8 @@ for i4 in range(0,np.size(hyd_arr)):
     # horizontalalignment='left', verticalalignment='bottom',
     # )
     
-    ax2.annotate('', xy=(4.5-0.15,0.15),  xycoords='data',
-    xytext=(4.5-0.15, 0.3), textcoords='data',
+    ax2.annotate('', xy=(4.5-0.15,300),  xycoords='data',
+    xytext=(4.5-0.15, 500), textcoords='data',
     arrowprops=dict(color='k', shrink=0,width=2,headwidth=4,headlength=5),
     horizontalalignment='left', verticalalignment='bottom',
     )
@@ -302,9 +308,9 @@ for i4 in range(0,np.size(hyd_arr)):
             scatter_mean[i2] = np.mean(t_evol_m) #record mean water inventory over course of habitable era
 
             if i5 == 0:
-                ax2.plot(4.5 - (time_arr/secingyr),t_evol_m/1000.,label=str(f_mH2O[i2]),color=colors[i2])
+                ax2.plot(4.5 - (time_arr/secingyr),t_evol_m,label=str(f_mH2O[i2]),color=colors[i2])
             if i5 == 1:
-                ax2.plot(time_arr/secingyr,t_evol_m/1000.,linestyle=':')
+                ax2.plot(time_arr/secingyr,t_evol_m,linestyle=':')
             
             ax2.legend(bbox_to_anchor=(1.1, 1),title = 'Melt H$\mathregular{_{2}}$O \nconcentration (wt%)')
             ax2.set_title('End of habitable era = ' + str(4.5-t) + ' Ga,\nHydrated mass fraction = ' + '{0:.1g}'.format(hyd*100) + ' wt%,\n' + str(mCO2*1e6) + ' ppm CO$\mathregular{_{2}}$',weight='bold')
@@ -313,11 +319,11 @@ for i4 in range(0,np.size(hyd_arr)):
     #%%%
     ax3[0].set_title('a. End habitable era water inventory\n('+ str(int(GEL)) + ' m GEL, ' + str(4.5-t) + ' Ga, ' + str(mCO2*1e6) + ' ppm CO$\mathregular{_{2}}$)',weight='bold',fontsize=50)
     
-    ax3[0].plot(f_mH2O,scatter_end/1000,'-o',color=colors_hyd[i4],linewidth = 7,markersize=25,label=str(' f$\mathregular{_{hyd}}$ = ' + str('{0:.1g}'.format(100*hyd_arr[i4])) + ' wt%'))
-    ax3[0].legend(loc='upper left',fontsize=35)
+    ax3[0].plot(f_mH2O,scatter_end,'-o',color=colors_hyd[i4],linewidth = 7,markersize=25,label=str(' f$\mathregular{_{hyd}}$ = ' + str('{0:.1g}'.format(100*hyd_arr[i4])) + ' wt%'))
+    ax3[0].legend(loc='lower right',fontsize=35)
     ax3[1].set_title('b. Mean habitable era water inventory',weight='bold',fontsize=50)
     
-    ax3[1].plot(f_mH2O,scatter_mean/1000,':s',color=colors_hyd[i4],linewidth = 7,markersize=25, label=str('{0:.1g}'.format(100*hyd_arr[i4])))
+    ax3[1].plot(f_mH2O,scatter_mean,':s',color=colors_hyd[i4],linewidth = 7,markersize=25, label=str('{0:.1g}'.format(100*hyd_arr[i4])))
     
     ax3[0].tick_params(axis='both', which='major', labelsize=40)
     ax3[1].tick_params(axis='both', which='major', labelsize=40)
